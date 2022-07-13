@@ -10,6 +10,11 @@ sudo apt-get install -y jq
 jq '.["default-runtime"] = "nvidia"' /etc/docker/daemon.json > tmp.$$.json && sudo mv -f tmp.$$.json /etc/docker/daemon.json
 rm tmp.*.json
 
+echo "Fixing docker permissions"
+sudo addgroup --system docker
+sudo adduser $USER docker
+newgrp docker
+
 echo "Fix GPG commit signing by executing: 'export GPG_TTY=$(tty)'"
 
 echo "Initialization process finished, please restart the machine"
