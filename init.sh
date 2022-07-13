@@ -11,6 +11,8 @@ exit
 echo "Adding nvidia as default container runtime for building containers"
 jq '.["default-runtime"] = "nvidia"' /etc/docker/daemon.json > tmp.$$.json && mv tmp.$$.json /etc/docker/daemon.json
 
+echo "Fix GPG commit signing"
+export GPG_TTY=$(tty)
 
 echo "Initialization process finished, please restart the machine"
 
