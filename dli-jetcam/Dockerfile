@@ -1,7 +1,8 @@
 FROM nvcr.io/nvidia/l4t-ml:r32.7.1-py3
-RUN python3 -m pip install -e git+https://github.com/NVIDIA-AI-IOT/jetcam#egg=jetcam
 RUN apt-get update
-RUN apt-get install -y git cmake libpython3-dev python3-numpy
+RUN apt-get install -y git cmake libpython3-dev python3-numpy ffmpeg
+RUN python3 -m pip install -e git+https://github.com/NVIDIA-AI-IOT/jetcam#egg=jetcam
+RUN python3 -m pip install pytube librosa pydub
 WORKDIR /usr/src
 RUN git clone --recursive https://github.com/dusty-nv/jetson-inference
 WORKDIR /usr/src/jetson-inference
